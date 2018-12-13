@@ -242,7 +242,6 @@ public class SimpanPinjam extends AppCompatActivity implements ExpandableListVie
                 builderout.setPositiveButton("Iya", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        finish();
                         Intent intentlogout = new Intent(getApplicationContext(), Login.class);
                         preferences = getSharedPreferences(KEYPREF, Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = preferences.edit();

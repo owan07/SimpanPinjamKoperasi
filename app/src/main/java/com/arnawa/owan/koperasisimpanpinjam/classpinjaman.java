@@ -1,20 +1,20 @@
 package com.arnawa.owan.koperasisimpanpinjam;
 
 public class classpinjaman {
-    private String Spinjaman;
-    private String SBunga;
+    private Double Spinjaman;
+    private Double SBunga;
     private String Sket;
     private String Stgl;
-    private String SAngsuran;
-    private String Sadm;
+    private Double SAngsuran;
+    private Double Sadm;
     private String SLama ;
-    private String Stagihan;
+    private Double Stagihan;
     private String Sidpelanggan;
     private String Sstatus;
     private String Stempo;
     private String Sid;
-    public classpinjaman(String id, String idpelanggan,String pinjaman,String Bunga,String ket,String tgl,
-                         String Angsuran,String adm,String Lama,String tagihan, String status,
+    public classpinjaman(String id, String idpelanggan,Double pinjaman,Double Bunga,String ket,String tgl,
+                         Double Angsuran,Double adm,String Lama,Double tagihan, String status,
                          String tempo)
     {
         Sid = id;
@@ -31,11 +31,11 @@ public class classpinjaman {
         Stempo = tempo;
 
     }
-    public String Getpinjaman()
+    public Double Getpinjaman()
     {
         return this.Spinjaman;
     }
-    public String GetBunga()
+    public Double GetBunga()
     {
         return this.SBunga;
     }
@@ -47,15 +47,15 @@ public class classpinjaman {
     {
         return this.SLama;
     }
-    public String Gettagihan()
+    public Double Gettagihan()
     {
         return this.Stagihan;
     }
-    public String Getadm()
+    public Double Getadm()
     {
         return this.Sadm;
     }
-    public String GetAnsuran()
+    public Double GetAnsuran()
     {
         return this.SAngsuran;
     }

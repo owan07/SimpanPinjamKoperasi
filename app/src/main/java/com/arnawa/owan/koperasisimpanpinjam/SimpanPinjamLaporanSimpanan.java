@@ -26,8 +26,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class SimpanPinjamLaporanSimpanan extends Fragment {
@@ -83,7 +86,7 @@ public class SimpanPinjamLaporanSimpanan extends Fragment {
             if (o != null) {
 
                 if (holder.tv_tglpembayaran_lpsimpanan != null) {
-                    holder.tv_tglpembayaran_lpsimpanan.setText("Tanggal Simpanan : "+o.Gettgl());
+                    holder.tv_tglpembayaran_lpsimpanan.setText("Tanggal Simpanan :"+o.Gettgl());
                 }
                 if (holder.tv_jenis_lpsimpanan != null) {
                     holder.tv_jenis_lpsimpanan.setText(o.Getjenis());
@@ -92,7 +95,7 @@ public class SimpanPinjamLaporanSimpanan extends Fragment {
                     holder.tv_keterangan_lpsimpanan.setText(o.Getketerangan());
                 }
                 if (holder.tv_jmlsimpanan_lpsimpanan != null) {
-                    holder.tv_jmlsimpanan_lpsimpanan.setText(o.Getjumlahsimpanan());
+                    holder.tv_jmlsimpanan_lpsimpanan.setText(formatRupiah.format((double)o.Getjumlahsimpanan()));
                 }
             }
             return convertView;
@@ -133,7 +136,7 @@ public class SimpanPinjamLaporanSimpanan extends Fragment {
                                     (
                                             merda.getString("anggota_id"), merda.getString ("tgl_transaksi" ),
                                             merda.getString ("jenis_id"),merda.getString ("keterangan"),
-                                            merda.getString ("jumlah")
+                                            merda.getDouble ("jumlah")
                                     );
                             msimpan.add(datasimpanan[a]);
                         }

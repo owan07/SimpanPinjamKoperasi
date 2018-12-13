@@ -20,6 +20,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class SimpanPinjamDataPengajuan extends Fragment {
@@ -29,6 +31,8 @@ public class SimpanPinjamDataPengajuan extends Fragment {
     private AsyncTask<String, Void, JSONObject> mSendData;
     private ArrayList<classdatapengajuan> mdatapengajuan = null;
     private OrderAdapter m_adapter;
+
+    NumberFormat formatRupiah;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -42,6 +46,8 @@ public class SimpanPinjamDataPengajuan extends Fragment {
 
         nosir=thebundle.getString("id");
         mSendData = new mSendData().execute(nosir);
+
+        formatRupiah = NumberFormat.getCurrencyInstance();
 
         return dataPengajuanView;
     }
@@ -83,7 +89,7 @@ public class SimpanPinjamDataPengajuan extends Fragment {
                     holder.tv_tglInput.setText("Tanggal Pinjaman : "+o.Gettgl());
                 }
                 if (holder.tv_nominal != null) {
-                    holder.tv_nominal.setText(o.Getjmlpinjaman());
+                    holder.tv_nominal.setText(formatRupiah.format((double)o.Getjmlpinjaman()));
                 }
                 if (holder.tv_jenis != null) {
                     holder.tv_jenis.setText(o.Getjenis());
@@ -142,7 +148,7 @@ public class SimpanPinjamDataPengajuan extends Fragment {
                             datapengajuanpinjaman[a] = new classdatapengajuan
                                     (
                                             merda.getString("anggota_id"), merda.getString("tgl_input"),
-                                            merda.getString("nominal"), merda.getString("jenis"),
+                                            merda.getDouble("nominal"), merda.getString("jenis"),
                                             merda.getString("keterangan"), merda.getString("lama_ags"),
                                             merda.getString("alasan"), merda.getString("tgl_update"),
                                             merda.getString("status")

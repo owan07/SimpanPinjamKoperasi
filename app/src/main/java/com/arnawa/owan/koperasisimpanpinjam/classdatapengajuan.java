@@ -3,7 +3,7 @@ package com.arnawa.owan.koperasisimpanpinjam;
 public class classdatapengajuan {
     private String Oanidanggota;
     private String Oantgl;
-    private String Oanjmlpinjaman;
+    private Double Oanjmlpinjaman;
     private String Oanjenis;
     private String Oanket;
     private String Oanjmlangsuran;
@@ -11,7 +11,7 @@ public class classdatapengajuan {
     private String Oantglupdate;
     private String Oanstatus;
 
-    public classdatapengajuan(String idanggota, String tgl, String jmlpinjaman, String jenis, String ket,
+    public classdatapengajuan(String idanggota, String tgl, Double jmlpinjaman, String jenis, String ket,
                               String jmlangsuran, String alasan, String tglupdate, String status)
     {
         Oanidanggota = idanggota;
@@ -33,7 +33,7 @@ public class classdatapengajuan {
         return this.Oantgl;
     }
 
-    public String Getjmlpinjaman(){
+    public Double Getjmlpinjaman(){
         return this.Oanjmlpinjaman;
     }
 

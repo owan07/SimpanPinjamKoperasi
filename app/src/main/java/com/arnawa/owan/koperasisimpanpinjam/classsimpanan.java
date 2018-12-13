@@ -5,9 +5,9 @@ public class classsimpanan {
     private String Oantgl;
     private String Oanjenis;
     private String Oanketerangan;
-    private String Oanjumlahsimpanan;
+    private Double Oanjumlahsimpanan;
 
-    public classsimpanan(String idanggota, String tgl, String jenis, String keterangan, String jumlahsimpanan)
+    public classsimpanan(String idanggota, String tgl, String jenis, String keterangan, Double jumlahsimpanan)
     {
         Oanidanggota = idanggota;
         Oantgl = tgl;
@@ -28,7 +28,7 @@ public class classsimpanan {
     public String Getketerangan() {
         return this.Oanketerangan;
     }
-    public String Getjumlahsimpanan() {
+    public Double Getjumlahsimpanan() {
         return this.Oanjumlahsimpanan;
     }
 }

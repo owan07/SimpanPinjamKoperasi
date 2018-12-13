@@ -28,6 +28,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +39,8 @@ public class SimpanPinjamLaporanPinjaman extends Fragment {
     private AsyncTask<String, Void, JSONObject> mSendData;
     private ArrayList<classpinjaman> mpinjam = null ;
     private OrderAdapter m_adapter;
+
+    NumberFormat formatRupiah;
 
     @Override
     public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle savedInstanceState) {
@@ -51,7 +54,8 @@ public class SimpanPinjamLaporanPinjaman extends Fragment {
 
         nosir=thebundle.getString("id");
         mSendData = new mSendData().execute(nosir);
-        //setListAdapter(m_adapter);
+
+        formatRupiah = NumberFormat.getCurrencyInstance();
 
         return lapPinjamanView;
     }
@@ -97,10 +101,10 @@ public class SimpanPinjamLaporanPinjaman extends Fragment {
                     }
                 });
                 if (holder.textView128 != null) {
-                    holder.textView128.setText(o.Getpinjaman());
+                    holder.textView128.setText(formatRupiah.format((double)o.Getpinjaman()));
                 }
                 if(holder.textView234 != null){
-                    holder.textView234.setText(o.GetBunga());
+                    holder.textView234.setText(formatRupiah.format((double)o.GetBunga()));
                 }
                 if(holder.tv_keterangan_lppinjaman != null){
                     holder.tv_keterangan_lppinjaman.setText(o.Getket());
@@ -109,13 +113,13 @@ public class SimpanPinjamLaporanPinjaman extends Fragment {
                     holder.textView232.setText(o.Getlama());
                 }
                 if(holder.textView238 != null){
-                    holder.textView238.setText(o.Gettagihan());
+                    holder.textView238.setText(formatRupiah.format((double)o.Gettagihan()));
                 }
                 if(holder.textView236 != null){
-                    holder.textView236.setText(o.Getadm());
+                    holder.textView236.setText(formatRupiah.format((double)o.Getadm()));
                 }
                 if(holder.textView230 != null){
-                    holder.textView230.setText(o.GetAnsuran());
+                    holder.textView230.setText(formatRupiah.format((double)o.GetAnsuran()));
                 }
                 if(holder.tv_tglpembayaran_lppinjaman != null){
                     holder.tv_tglpembayaran_lppinjaman.setText("Tanggal Pinjaman : "+o.Gettgl());
@@ -168,12 +172,12 @@ public class SimpanPinjamLaporanPinjaman extends Fragment {
                             datapinjaman[a] = new classpinjaman
                                     (
                                             merda.getString("id"), merda.getString("anggota_id"),
-                                            merda.getString ("jumlah" ),
-                                            merda.getString ("bunga_pinjaman"),merda.getString ("keterangan"),
+                                            merda.getDouble ("jumlah" ),
+                                            merda.getDouble ("bunga_pinjaman"),merda.getString ("keterangan"),
                                             merda.getString ("tgl_pinjam"),
-                                            merda.getString("ags_per_bulan"),
-                                            merda.getString ("biaya_adm"),merda.getString ("lama_angsuran"),
-                                            merda.getString ("tagihan"),merda.getString ("lunas"),
+                                            merda.getDouble("ags_per_bulan"),
+                                            merda.getDouble ("biaya_adm"),merda.getString ("lama_angsuran"),
+                                            merda.getDouble ("tagihan"),merda.getString ("lunas"),
                                             merda.getString ("tempo")
                                     );
                             mpinjam.add(datapinjaman[a]);

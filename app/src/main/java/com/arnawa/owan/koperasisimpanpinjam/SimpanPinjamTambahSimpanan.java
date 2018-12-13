@@ -23,9 +23,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.text.DateFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 
 import org.apache.http.client.ClientProtocolException;
@@ -36,7 +36,6 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 public class SimpanPinjamTambahSimpanan extends Fragment {
@@ -46,7 +45,7 @@ public class SimpanPinjamTambahSimpanan extends Fragment {
     private TextView tv_namaAnggotaSimpanan;
     private Spinner spinner;
     private String idsimpanan;
-    EditText et_jumlahSimpanan, et_keterangansimpanan;
+    EditText et_jumlahSimpanan, et_keterangansimpanan, etPilihTanggalTransaksi;
     private ProgressDialog prgDialogLogin;
     private ProgressDialog prgDialogLogins;
     private static final String TAG = SimpanPinjamTambahSimpanan.class.getSimpleName();
@@ -58,6 +57,8 @@ public class SimpanPinjamTambahSimpanan extends Fragment {
     String nosir = "";
     ArrayAdapter adapter;
     Fragment fragment = null;
+    NumberFormat formatRupiah;
+    Double jmlsimpanan = null;
 
     HashMap<Integer, String> mJenisSimpanan = new HashMap<Integer, String>();
 
@@ -83,15 +84,17 @@ public class SimpanPinjamTambahSimpanan extends Fragment {
         View tambahSimpananView = inflater.inflate(R.layout.fragment_simpan_pinjam_tambah_simpanan,container,false);
 
         tv_namaAnggotaSimpanan = (TextView) tambahSimpananView.findViewById(R.id.tv_namaAnggotaSimpanan);
-
         et_jumlahSimpanan = (EditText) tambahSimpananView.findViewById(R.id.et_jumlahSimpanan);
         et_keterangansimpanan = (EditText) tambahSimpananView.findViewById(R.id.et_keterangansimpanan);
+        etPilihTanggalTransaksi = (EditText) tambahSimpananView.findViewById(R.id.etPilihTanggalTransaksi);
 
-        final EditText etPilihTanggalTransaksi = (EditText) tambahSimpananView.findViewById(R.id.etPilihTanggalTransaksi);
+        formatRupiah = NumberFormat.getCurrencyInstance();
+
         Calendar cal = Calendar.getInstance();
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        DateFormat df = new SimpleDateFormat("dd MMM yyyy");
         String date_str = df.format(cal.getTime());
         etPilihTanggalTransaksi.setText(date_str);
+
         btn_cameraSimpanan = (Button) tambahSimpananView.findViewById(R.id.btn_cameraSimpanan);
         btn_galerySimpanan = (Button) tambahSimpananView.findViewById(R.id.btn_galerySimpanan);
         img_buktiTfsimpanan = (ImageView) tambahSimpananView.findViewById(R.id.img_buktiTfsimpanan);
@@ -187,7 +190,7 @@ public class SimpanPinjamTambahSimpanan extends Fragment {
     private class mBayarSimpan extends AsyncTask<String, Void, JSONObject>{
         @Override
         protected void onPreExecute() {
-            prgDialogLogins = ProgressDialog.show(getActivity(), "Please Waiti", "Retrieving data ...", true);
+            prgDialogLogins = ProgressDialog.show(getActivity(), "Please Waiting", "Retrieving data ...", true);
         }
 
         @Override
@@ -233,10 +236,9 @@ public class SimpanPinjamTambahSimpanan extends Fragment {
 
                         for (int a = 0; a < juve.length(); ++a) {
                             merda = juve.getJSONObject(a);
-                                //merda = juve.getJSONArray(a);
                                 merda.getString("id");
                                 merda.getString("jns_simpan");
-                                merda.getString("jumlah");
+                                merda.getDouble("jumlah");
                                 itemList.add(new StringWithTag(merda.getString("jns_simpan"), merda.getString("id"), merda.getString("jumlah")));
                         }
 

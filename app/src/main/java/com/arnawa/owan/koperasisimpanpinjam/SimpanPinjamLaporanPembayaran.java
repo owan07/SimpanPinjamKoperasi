@@ -94,6 +94,27 @@ public class SimpanPinjamLaporanPembayaran extends Fragment {
                     holder.tvJumlahTagihanLaporanPembayaran.setText(o.Getketerangan());
                 }
             }
+            if (o == null) {
+
+                if (holder.tv_pinjaman_lppembayaran == null) {
+                    holder.tv_pinjaman_lppembayaran.setText("Jumlah Bayar : ");
+                }
+                if (holder.tv_totalangsuran_lppembayaran == null) {
+                    holder.tv_totalangsuran_lppembayaran.setText("Angsuran Ke : ");
+                }
+                if (holder.tv_tanggalTransaksi == null) {
+                    holder.tv_tanggalTransaksi.setText("Tanggal Pembayaran : ");
+                }
+                if (holder.tvKodeTransaksiLapPembayaran == null) {
+                    holder.tvKodeTransaksiLapPembayaran.setText("");
+                }
+                if (holder.tvDendaLap == null) {
+                    holder.tvDendaLap.setText("");
+                }
+                if (holder.tvJumlahTagihanLaporanPembayaran == null) {
+                    holder.tvJumlahTagihanLaporanPembayaran.setText("");
+                }
+            }
             return convertView;
         }
         private class ViewHolder{
