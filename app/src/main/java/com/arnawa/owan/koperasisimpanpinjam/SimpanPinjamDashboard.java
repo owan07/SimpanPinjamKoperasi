@@ -93,7 +93,7 @@ public class SimpanPinjamDashboard extends Fragment {
         list_data = new ArrayList<HashMap<String, String>>();
 
         Locale localeID = new Locale("in", "ID");
-        formatRupiah = NumberFormat.getCurrencyInstance();
+        formatRupiah = NumberFormat.getCurrencyInstance(localeID);
 
     }
     private class mSendData extends AsyncTask<String, Void, JSONObject>{
