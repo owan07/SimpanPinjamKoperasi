@@ -150,8 +150,7 @@
                 android:inputType="textMultiLine"
                 android:textSize="12sp" />
 
-            <ListView
-                android:id="@+id/list_simulasi_pinjaman_berkala"
+            <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/editText8"
@@ -160,13 +159,15 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="8dp"
-                android:background="@android:color/background_light" />
+                android:background="@android:color/background_light"
+                android:id="@+id/recycler_view"></android.support.v7.widget.RecyclerView>
+
 
             <Button
                 android:id="@+id/btnKirimPengajuanPinjaman"
                 android:layout_width="match_parent"
                 android:layout_height="34dp"
-                android:layout_below="@+id/list_simulasi_pinjaman_berkala"
+                android:layout_below="@+id/recycler_view"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="8dp"
                 android:layout_marginLeft="16dp"
